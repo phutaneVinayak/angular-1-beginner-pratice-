@@ -1,0 +1,21 @@
+button .mdi.mdi-plus-circle.ng-scope.material-icons {
+  margin-top: -13px;
+}
+button .mdi.mdi-magnify.ng-scope.material-icons {
+  margin-top: -13px;
+}
+.card-data.ng-enter, .card-data.ng-move {
+  transition: 0.5s all;
+  opacity: 0;
+}
+.card-data.ng-enter.ng-enter-active, .card-data.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+.card-data.ng-leave {
+  animation: 0.4s cardFrame;
+}
+@@keyframes cardFrame {
+  from { opacity: 1; }
+    to { opacity: 0; }
+}

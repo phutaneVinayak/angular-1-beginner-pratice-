@@ -1,0 +1,57 @@
+
+    <div class="DemoApp" ng-controller="cardsController">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <p> <strong> ngDemoApp</strong> </p>
+            <md-button ng-click="vm.openSidebar()">
+                <md-icon class="mdi mdi-plus-circle"></md-icon>
+                  New card
+            </md-button>
+            <md-button ng-click="showSearch = true">
+                <md-icon class="mdi mdi-magnify"></md-icon>
+                  search card
+            </md-button>
+          </div>
+        </md-toolbar>
+
+        <div class="searchBox" layout="row" layout-align="center center" ng-show="showSearch">
+          <md-input-container>
+            <label for=""> Enter Search Term </label>
+            <input type="text" ng-model="cardName" name="" value="">
+          </md-input-container>
+        </div>
+
+        <ui-view> </ui-view>
+
+        <md-content style="overflow: visible;" class="md-padding" layout="row" layout-wrap>
+          <md-card class="card-data" ng-repeat="data in vm.demo | filter: cardName" flex="30">
+              <img ng-src="{{ data.image }}" alt=" demo img" />
+              <md-card-content>
+                <div class="demoInfo" ng-show="!showContact">
+                    <h2 class="demoTitle"> {{ data.title | uppercase }} </h2>
+                    <h3>{{ data.posted | date:'longDate'}}</h3>
+                    <h3>{{ data.price | currency }}</h3>
+                    <p> {{ data.description }} </p>
+                </div>
+                <div class="demoContact" ng-show="showContact">
+                  <p><md-icon class="mdi mdi-account" aria-label="">  </md-icon>{{ data.contact.name }}</p>
+                  <p><md-icon class="mdi mdi-phone" aria-label="">  </md-icon> {{ data.contact.phone }} </p>
+                  <p><md-icon class="mdi mdi-email" aria-label="">  </md-icon> {{ data.contact.email }} </p>
+                </div>
+                <div class="" layout="row">
+                    <md-button ng-show="!showContact" ng-click="showContact = true"> contacts </md-button>
+                    <md-button ng-show="showContact" ng-click="showContact = false"> Details </md-button>
+                    <md-button ng-show="!showAdmin" ng-click="showAdmin = true"> Admin </md-button>
+                    <md-button ng-show="showAdmin" ng-click="showAdmin = false"> Close </md-button>
+                </div>
+                <div class="demo-admin" ng-if="showAdmin">
+                    <h3>Admin</h3>
+                    <div layout="row">
+                      <md-button class="md-primary" ng-click="vm.editCard(data)"> Edit </md-button>
+                      <md-button class="md-warn" ng-click="vm.deleteCard( $event, data)"> Delete </md-button>
+                    </div>
+                </div>
+              </md-card-content>
+          </md-card>
+        </md-content>
+    </div>

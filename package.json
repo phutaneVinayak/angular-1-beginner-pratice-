@@ -1,0 +1,14 @@
+{
+  "name": "agulardemo",
+  "version": "1.0.0",
+  "description": "angular demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vinayak",
+  "license": "ISC",
+  "dependencies": {
+    "angular-ui-router": "^1.0.3"
+  }
+}

@@ -1,0 +1,93 @@
+input type="text" ng-model="name">
+<h1> {{ name }} </h1>
+<demo-directive></demo-directive>
+
+$scope.demo = {
+  title: "Heello",
+  price: "100,000,00",
+  desc: "dhuhjehjhffksfkfjskfjekfjfskfjsfjfkjfkfjkfjsfkfjskfjsfksejkfjsekfjskfjskfjksjk"
+}
+
+
+(function () {
+    'use strict';
+    angular
+          .module("anDemoApp")
+          .controller("demoController", function($scope) {
+            $scope.demo = {
+              title: "Heello",
+              price: "100,000,00",
+              desc: "dhuhjehjhffksfkfjskfjekfjfskfjsfjfkjfkfjkfjsfkfjskfjsfksejkfjsekfjskfjskfjksjk"
+            }
+
+          });
+})();
+
+
+angular.module("anDemoApp", ["ngMaterial"])
+       .config(function($mdThemingProvider) {
+          $mdThemingProvider.theme('default')
+          .primaryPalette('teal')
+          .accentPalette('orange');
+       })
+       .directive("demoDirective", function() {
+         return {
+           template: "<h1> {{ message }} </h1>"
+         }
+       });
+
+       <h3> {{ demo.price | currency }} </h3>
+       <p> {{ demo.desc }} </p>
+
+
+
+       <md-toolbar>
+         <div class="md-toolbar-tools">
+           <p> <strong> ngDemoApp</strong> </p>
+           <md-button>
+               <md-icon class="mdi mdi-plus-circle"></md-icon>
+                 New Demo App
+           </md-button>
+         </div>
+       </md-toolbar>
+
+       <md-content class="md-padding" layout="row" layout-wrap>
+         <md-card flex="33">
+             <img src="img/demo.jpg" alt=" demo img">
+             <md-card-content>
+               <div class="demoInfo">
+                   <h2 class="demoTitle"> {{ demo.title }} </h2>
+
+               </div>
+             </md-card-content>
+         </md-card>
+       </md-content>
+
+
+// app.js state demo  dump
+angular.module("ngDemoApp", ["ngMaterial", 'ui.router'])
+       .config(function($mdThemingProvider, $stateProvider, $urlRouterProvider, $locationProvider) {
+           $mdThemingProvider.theme('default')
+           .primaryPalette('teal')
+           .accentPalette('orange');
+           $urlRouterProvider.otherwise('');
+           $locationProvider.hashPrefix('');
+           $stateProvider
+                         .state("stateOne", {
+                            url: '/stateOne',
+                            template: '<h1> {{ stateOneCtrl.messsage }} </h1>',
+                            controller: 'stateoneController as stateOneCtrl'
+                         })
+                         .state("stateTwo", {
+                            url: '/stateTwo',
+                            template: '<h1> {{ stateTwoCtrl.messsage }} </h1>',
+                            controller: 'statetwoController as stateTwoCtrl'
+                         });
+      });
+
+      <script type="text/javascript" src="controller/stateoneController.js"></script>
+      <script type="text/javascript" src="controller/statetwoController.js"></script>
+
+      <md-button ui-sref="stateOne"> go to  stateOne </md-button>
+      <md-button ui-sref="stateTwo"> go to stateTwo </md-button>
+      <ui-view></ui-view>
